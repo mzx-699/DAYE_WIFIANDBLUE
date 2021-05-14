@@ -41,7 +41,7 @@
 //    LoginViewController *vc = [[LoginViewController alloc] init];
 //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
 //    self.window.rootViewController = nav;
-    
+//    connectViewController *vc = [connectViewController new];
     ChangeViewController *vc = [[ChangeViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     self.window.rootViewController = nav;

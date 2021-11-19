@@ -41,44 +41,51 @@
     [super viewDidLoad];
     self.bluetoothDataManage = [BluetoothDataManage shareInstance];
     
+    #pragma mark - 2021.10.18 改
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *deviceType = [defaults valueForKey:@"deviceType"];
-    if (deviceType) {
-        switch ([deviceType integerValue]) {
-            case 0:
-                dataName = @"DY00273";
-                break;
-            case 1:
-                if ([BluetoothDataManage shareInstance].sectionvalve ==0) {
-                    dataName = @"DY01273";
-                }else{
-                    dataName = @"DY11273";
-                }
-                break;
-            case 2:
-                if ([BluetoothDataManage shareInstance].sectionvalve ==0) {
-                    dataName = @"DY02273";
-                }else{
-                    dataName = @"DY12273";
-                }
-                break;
-            case 4:
-                if ([BluetoothDataManage shareInstance].sectionvalve ==0) {
-                    dataName = @"DY04273";
-                }else{
-                    dataName = @"DY14273";
-                }
-                break;
-            case 5:
-                if ([BluetoothDataManage shareInstance].sectionvalve ==0) {
-                    dataName = @"DY05273";
-                }else{
-                    dataName = @"DY15273";
-                }
-                break;
-            default:
-                break;
-        }
+    NSNumber *updateString = [defaults valueForKey:@"updateString"];
+    if ([@"DY002" isEqual:updateString]) {
+        dataName = @"DY00274";
+    } else if ([@"DY052" isEqual:updateString]) {
+        dataName = @"DY05274";
+    } else if ([@"DY012" isEqual:updateString]) {
+        dataName = @"DY01274";
+    } else if ([@"DY112" isEqual:updateString]) {
+        dataName = @"DY11274";
+    } else if ([@"DY022" isEqual:updateString]) {
+        dataName = @"DY02274";
+    } else if ([@"DY122" isEqual:updateString]) {
+        dataName = @"DY12274";
+    } else if ([@"DY142" isEqual:updateString]) {
+        dataName = @"DY14274";
+    } else if ([@"DY162" isEqual:updateString]) {
+        dataName = @"DY16274";
+    } else if ([@"GY002" isEqual:updateString]) {
+        dataName = @"GY00274";
+    } else if ([@"GY052" isEqual:updateString]) {
+        dataName = @"GY05274";
+    } else if ([@"GY012" isEqual:updateString]) {
+        dataName = @"GY01274";
+    } else if ([@"GY112" isEqual:updateString]) {
+        dataName = @"GY11274";
+    } else if ([@"GY022" isEqual:updateString]) {
+        dataName = @"GY02274";
+    } else if ([@"GY122" isEqual:updateString]) {
+        dataName = @"GY12274";
+    } else if ([@"GY142" isEqual:updateString]) {
+        dataName = @"GY14274";
+    } else if ([@"GY162" isEqual:updateString]) {
+        dataName = @"GY16274";
+    } else if ([@"DM104" isEqual:updateString]) {
+        dataName = @"DM10403";
+    } else if ([@"DM304" isEqual:updateString]) {
+        dataName = @"DM30403";
+    } else if ([@"DA104" isEqual:updateString]) {
+        dataName = @"DA10402";
+    } else if ([@"DA114" isEqual:updateString]) {
+        dataName = @"DA11402";
+    } else if ([@"DA134" isEqual:updateString]) {
+        dataName = @"DA13402";
     }
     
     NSLog(@"更新文件包名.....%@",dataName);
@@ -169,13 +176,15 @@
     [self.view addSubview:bgView];
     self->imgView = [[UIImageView alloc] init];
     
+    #pragma mark - 2021.10.8 改
     //根据设备类型显示相应图片
-    if ([BluetoothDataManage shareInstance].deviceType == 0) {
-        //要显示的图片，即要放大的图片
-        [imgView setImage:[UIImage imageNamed:@"updateFirmwareTip0"]];
-    }else{
-        [imgView setImage:[UIImage imageNamed:@"updateFirmwareTip"]];
-    }
+    imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[BluetoothDataManage shareInstance].updateFirmwareImageName]];
+//    if ([BluetoothDataManage shareInstance].deviceType == 0) {
+//        //要显示的图片，即要放大的图片
+//        [imgView setImage:[UIImage imageNamed:@"updateFirmwareTip0"]];
+//    }else{
+//        [imgView setImage:[UIImage imageNamed:@"updateFirmwareTip"]];
+//    }
     [bgView addSubview:imgView];
     [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(ScreenHeight,ScreenWidth));
@@ -223,7 +232,8 @@
     
     //curVerTextView
     _curVerTV = [[UITextView alloc] init];
-    _curVerTV.text = [NSString stringWithFormat:@"%@\n V%@.%d.%d.%d\n%@\n V%@.2.7.3\n",LocalString(@"Your robot's firmware version:"),[BluetoothDataManage shareInstance].deviceType,[BluetoothDataManage shareInstance].version1,[BluetoothDataManage shareInstance].version2,[BluetoothDataManage shareInstance].version3,LocalString(@"Latest robot's firmware version:"),[BluetoothDataManage shareInstance].deviceType];
+    #pragma mark - 2021.10.18 改
+    _curVerTV.text = [NSString stringWithFormat:@"%@\n %@\n%@\n V%@.2.7.3\n",LocalString(@"Your robot's firmware version:"), [BluetoothDataManage shareInstance].versionString,LocalString(@"Latest robot's firmware version:"),dataName];
     _curVerTV.font = [UIFont fontWithName:@"Arial" size:17];
     _curVerTV.backgroundColor = [UIColor clearColor];
     _curVerTV.autocapitalizationType = UITextAutocapitalizationTypeSentences;
@@ -251,11 +261,13 @@
     _activityIndicatorView.hidesWhenStopped = YES;
     [self.view addSubview:_activityIndicatorView];
     //根据设备类型显示相应图片
-    if ([BluetoothDataManage shareInstance].deviceType == 0) {
-        _tipImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"updateFirmwareTip0"]];
-    }else{
-        _tipImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"updateFirmwareTip"]];
-    }
+    #pragma mark - 2021.10.8 改
+    _tipImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[BluetoothDataManage shareInstance].updateFirmwareImageName]];
+//    if ([BluetoothDataManage shareInstance].deviceType == 0) {
+//        _tipImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"updateFirmwareTip0"]];
+//    }else{
+//        _tipImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"updateFirmwareTip"]];
+//    }
     [self.view addSubview:_tipImage];
     NSString *deviceType = [UIDevice currentDevice].model;
     

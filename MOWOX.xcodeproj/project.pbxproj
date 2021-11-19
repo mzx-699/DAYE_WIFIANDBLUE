@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18A4CD77273A7BF400B3B7C4 /* update_10_18_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A4CD74273A7BF300B3B7C4 /* update_10_18_2.png */; };
+		18A4CD78273A7BF400B3B7C4 /* update_10_18_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A4CD75273A7BF400B3B7C4 /* update_10_18_1.png */; };
+		18A4CD79273A7BF400B3B7C4 /* update_10_18_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 18A4CD76273A7BF400B3B7C4 /* update_10_18_3.png */; };
 		36009B7F21F0260B00245D71 /* Welcome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36009B7E21F0260B00245D71 /* Welcome@2x.png */; };
 		36009B8221F0261B00245D71 /* Welcome1_4.7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36009B8021F0261B00245D71 /* Welcome1_4.7@2x.png */; };
 		36009B8321F0261B00245D71 /* Welcome1_5.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36009B8121F0261B00245D71 /* Welcome1_5.5@2x.png */; };
@@ -269,6 +272,9 @@
 		18121EC4257F295D007B5222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18121ECD257F295D007B5222 /* RoMoxUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoMoxUITests.m; sourceTree = "<group>"; };
 		18121ECF257F295D007B5222 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18A4CD74273A7BF300B3B7C4 /* update_10_18_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update_10_18_2.png; sourceTree = "<group>"; };
+		18A4CD75273A7BF400B3B7C4 /* update_10_18_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update_10_18_1.png; sourceTree = "<group>"; };
+		18A4CD76273A7BF400B3B7C4 /* update_10_18_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = update_10_18_3.png; sourceTree = "<group>"; };
 		1F864A63560DCE59776D4952 /* Pods-MOWOX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MOWOX.release.xcconfig"; path = "Pods/Target Support Files/Pods-MOWOX/Pods-MOWOX.release.xcconfig"; sourceTree = "<group>"; };
 		36009B7E21F0260B00245D71 /* Welcome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Welcome@2x.png"; path = "image/icon1/Welcome@2x.png"; sourceTree = SOURCE_ROOT; };
 		36009B8021F0261B00245D71 /* Welcome1_4.7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Welcome1_4.7@2x.png"; path = "image/icon1/Welcome1_4.7@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -815,6 +821,9 @@
 		3E14802B1FCFE50900FA8A2D /* image */ = {
 			isa = PBXGroup;
 			children = (
+				18A4CD75273A7BF400B3B7C4 /* update_10_18_1.png */,
+				18A4CD74273A7BF300B3B7C4 /* update_10_18_2.png */,
+				18A4CD76273A7BF400B3B7C4 /* update_10_18_3.png */,
 				36DDB0BE21D5FE0A006CEAFA /* Robot@2x.png */,
 				3E458D1C21AFD687001FEB1F /* SecondaryAreaImage.png */,
 				BB513EEC2140C7A9000D2A5E /* wifi_img */,
@@ -1503,6 +1512,7 @@
 				36F0FD072456C599006B1ABA /* ipad76pt@2x.png in Resources */,
 				BB479EF5208D6F9200B19D6A /* 1024.png in Resources */,
 				3E14806D1FCFFA8C00FA8A2D /* 电量3-2@1x.png in Resources */,
+				18A4CD77273A7BF400B3B7C4 /* update_10_18_2.png in Resources */,
 				BBB611222019B111007FA3D4 /* 180x180@3x.png in Resources */,
 				3E63255A1FA6DB7900F14462 /* login@2x.png in Resources */,
 				BB479EF8208D6F9200B19D6A /* 60*60@3x.png in Resources */,
@@ -1547,6 +1557,7 @@
 				BB479EFB208D6F9200B19D6A /* 120*120@2x.png in Resources */,
 				BB5C49CB207D9B28007B2508 /* updateFirmwareTip@2x.png in Resources */,
 				36C6BEAD24D4109C00E5B7F6 /* DY11273.BIN in Resources */,
+				18A4CD78273A7BF400B3B7C4 /* update_10_18_1.png in Resources */,
 				3E14806E1FCFFA8C00FA8A2D /* 电量4-2@1x.png in Resources */,
 				BBB6112B2019B1F3007FA3D4 /* 60x60@2x.png in Resources */,
 				3E14807A1FD0042D00FA8A2D /* A6@1x.png in Resources */,
@@ -1560,6 +1571,7 @@
 				36F0FD042456C599006B1ABA /* iphone40pt@3x.png in Resources */,
 				BB513EF52140DAC4000D2A5E /* ic_nav_more_black@2x.png in Resources */,
 				3E14805E1FCFEF1400FA8A2D /* 机器人APP1+2(1-1.png in Resources */,
+				18A4CD79273A7BF400B3B7C4 /* update_10_18_3.png in Resources */,
 				3E14807B1FD0042D00FA8A2D /* backgroundnew@2x.png in Resources */,
 				3E43AD341FAAF4E100924616 /* 电量4@1x.png in Resources */,
 				3E43ACE61FAAB39C00924616 /* whether@1x.png in Resources */,

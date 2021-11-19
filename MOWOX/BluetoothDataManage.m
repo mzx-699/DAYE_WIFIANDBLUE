@@ -35,6 +35,49 @@ static BluetoothDataManage *sgetonInstanceData = nil;
 
 @implementation BluetoothDataManage
 
+#pragma mark - 2021.10.18 改
+- (NSString *)updateFirmwareImageName {
+//    if (_deviceType.intValue == 0) {
+//        //要显示的图片，即要放大的图片
+//        NSLog(@"%@", self.deviceType);
+//        return @"updateFirmwareTip0";
+//    } else {
+//        return @"updateFirmwareTip";
+//    }
+    if ([@"DY002" isEqual:self.updateString] || [@"DY052" isEqual:self.updateString] ||
+        [@"DM104" isEqual:self.updateString] || [@"DM304" isEqual:self.updateString] ||
+        [@"DA104" isEqual:self.updateString] || [@"DA134" isEqual:self.updateString]) {
+        return @"update_10_18_1";
+    } else if ([@"DA114" isEqual:self.updateString]) {
+        return @"update_10_18_3";
+    } else if ([@"DY012" isEqual:self.updateString] || [@"DY112" isEqual:self.updateString] ||
+               [@"DY122" isEqual:self.updateString] || [@"DY142" isEqual:self.updateString] ||
+               [@"DY162" isEqual:self.updateString] || [@"GY002" isEqual:self.updateString] ||
+               [@"GY052" isEqual:self.updateString] || [@"GY012" isEqual:self.updateString] ||
+               [@"GY112" isEqual:self.updateString] || [@"GY022" isEqual:self.updateString] ||
+               [@"GY122" isEqual:self.updateString] || [@"GY142" isEqual:self.updateString] ||
+               [@"GY162" isEqual:self.updateString]) {
+        return @"update_10_18_2";
+    }
+    return @"update_10_18_1";
+}
+#pragma mark - 2021.10.18 改
+- (bool)updateHelixset {
+//    if (_deviceType.intValue == 0) {
+//        //要显示的图片，即要放大的图片
+//        NSLog(@"%@", self.deviceType);
+//        return @"updateFirmwareTip0";
+//    } else {
+//        return @"updateFirmwareTip";
+//    }
+    if ([@"DM104" isEqual:self.updateString] || [@"DM304" isEqual:self.updateString]) {
+        return true;
+    } else {
+        return false;
+    }
+    
+}
+
 + (instancetype)shareInstance{
     static dispatch_once_t once;
     dispatch_once(&once, ^{
@@ -55,6 +98,8 @@ static BluetoothDataManage *sgetonInstanceData = nil;
         _bluetoothData = [[NSMutableArray alloc] init];
         _dataContent = [[NSMutableArray alloc] init];
         _receiveData = [[NSMutableArray alloc] init];
+        _versionString = [[NSMutableString alloc] init];
+        _updateString = [[NSMutableString alloc] init];
         _updateSucceseFlag = 1;
     }
     return self;
@@ -424,15 +469,20 @@ static BluetoothDataManage *sgetonInstanceData = nil;
             NSNumber *CPUTemperature = _receiveData[5];
             NSNumber *batterTemperature = _receiveData[6];
             NSNumber *mowerState = _receiveData[7];
-            NSNumber *deviceTypeA = _receiveData[8];
-            NSNumber *version1 = _receiveData[9];
-            NSNumber *version2 = _receiveData[10];
-            NSNumber *version3 = _receiveData[11];
+//            NSNumber *deviceTypeA = _receiveData[8];
+            #pragma mark - 2021.10.18 改
+            NSNumber *version1 = _receiveData[8];
+            NSNumber *version2 = _receiveData[9];
+            NSNumber *version3 = _receiveData[10];
+            NSNumber *version4 = _receiveData[11];
             NSNumber *robotState = _receiveData[12];
-            _deviceType = deviceTypeA;
+            NSNumber *versionChar1 = _receiveData[13];
+            NSNumber *versionChar2 = _receiveData[14];
+            _deviceType = version1;
             _version1 = [version1 intValue];
             _version2 = [version2 intValue];
             _version3 = [version3 intValue];
+            _version4 = [version4 intValue];
             _versionupdate = _version1 * 100 + _version2 * 10 + _version3;
             
             [dataDic setObject:batterData forKey:@"batterData"];
@@ -443,8 +493,25 @@ static BluetoothDataManage *sgetonInstanceData = nil;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"getMowerData" object:nil userInfo:dataDic];
             
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:deviceTypeA forKey:@"deviceType"];
+            [defaults setObject:version1 forKey:@"deviceType"];
             [defaults synchronize];
+            
+            [self.versionString appendFormat:@"%c", [versionChar1 charValue]];
+            [self.versionString appendFormat:@"%c", [versionChar2 charValue]];
+            [self.versionString appendFormat:@"%d", self.sectionvalve];
+            [self.versionString appendFormat:@"%d", self.version1];
+            [self.versionString appendFormat:@"%d", self.version2];
+            [self.versionString appendFormat:@"%d", self.version3];
+            [self.versionString appendFormat:@"%d", self.version4];
+            
+            [self.updateString appendFormat:@"%c", [versionChar1 charValue]];
+            [self.updateString appendFormat:@"%c", [versionChar2 charValue]];
+            [self.updateString appendFormat:@"%d", self.sectionvalve];
+            [self.updateString appendFormat:@"%d", self.version1];
+            [self.updateString appendFormat:@"%d", self.version2];
+            [defaults setObject:self.updateString forKey:@"updateString"];
+            [defaults synchronize];
+            
         }else if (self.frameType == getAlerts){
             NSLog(@"接收到getAlerts");
             NSMutableDictionary *dataDic = [[NSMutableDictionary alloc] init];

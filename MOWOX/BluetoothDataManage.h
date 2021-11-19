@@ -52,15 +52,23 @@ static dispatch_queue_t queue;
 
 ///@brife 收到的版本信息
 @property (nonatomic, strong) NSNumber *deviceType;
-@property (nonatomic) int version1;
-@property (nonatomic) int version2;
-@property (nonatomic) int version3;
+
 //@接收值第五位返回的pin值
 @property (nonatomic) int sectionvalve;
 //@获取分区信息1d
 @property (nonatomic) int getAeraMessage;
 //@更新版本信息
 @property (nonatomic) int versionupdate;
+
+#pragma mark - 2021.10.8 改
+@property (nonatomic) int version1;
+@property (nonatomic) int version2;
+@property (nonatomic) int version3;
+@property (nonatomic) int version4;
+@property (nonatomic) NSMutableString *versionString;
+@property (nonatomic) NSMutableString *updateString;
+- (NSString*) updateFirmwareImageName;
+- (bool) updateHelixset;
 
 + (instancetype)shareInstance;
 
